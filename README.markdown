@@ -47,3 +47,29 @@ rules and rights, and then using the `security` binary to make any changes.
 While the calls to `security` are sound, the SQLite DB query is probably a bit
 hackish. There are most likely better ways to handle this, and I'm open to
 suggestions.
+
+This provider requires the `sqlite3` gem to do its work.  You can install that
+with Bundler using the provided `Gemfile`, or by installing the gem directly
+with Rubygems.  If you decide to use Rubygems, you can do:
+
+```
+ └(~)▷ sudo gem install sqlite3
+```
+
+Next, if you want to test this out on its own, make sure to set `$RUBYLIB`
+to the lib directory of this module.  Since I normally install all my Puppet
+modules into `~/src`, exporting `$RUBYLIB` would look like this on my box:
+
+```
+ └(~)▷ export RUBYLIB=~/src/puppet-authorization/lib
+```
+
+Finally, you can use `puppet resource` to query values:
+
+```
+ └(~)▷ sudo puppet resource authorization_rule
+```
+
+(Note that you need to use sudo since you need root permissions to access
+`/var/db/auth.db`)
+
